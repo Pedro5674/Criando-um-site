@@ -1,10 +1,148 @@
-header{
-    background-color: #312b2b;
-    color: #ffffff;
-    text-align: center;
+/* Configurações Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-main{
-    background-color: #353534;
+
+body {
+    background-color: #121212;
     color: #ffffff;
+}
+
+/* Cabeçalho */
+.header {
+    background-color: #e62429; /* Vermelho Oficial Marvel */
     text-align: center;
+    padding: 30px 15px;
+}
+
+.header h1 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.header h1 span {
+    color: #000000;
+    background-color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.header p {
+    margin-top: 8px;
+    font-size: 1.1rem;
+    color: #f1f1f1;
+}
+
+/* Banner de Boas-vindas */
+.banner {
+    text-align: center;
+    padding: 25px 15px;
+    background-color: #1a1a1a;
+    border-bottom: 3px solid #e62429;
+}
+
+.banner h2 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.banner p {
+    color: #aaa;
+}
+
+/* Seção Principal */
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.container h2 {
+    margin-bottom: 25px;
+    color: #e62429;
+    border-left: 5px solid #e62429;
+    padding-left: 12px;
+    font-size: 1.6rem;
+}
+
+/* Grid de Produtos */
+.grid-hqs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+}
+
+/* Card individual da HQ */
+.card-hq {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #2a2a2a;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-hq:hover {
+    transform: translateY(-6px);
+    border-color: #e62429;
+}
+
+.card-hq img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.card-hq h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.preco {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #2ed573; /* Verde para destacar valor */
+    margin-bottom: 15px;
+}
+
+/* Botão */
+.btn-comprar {
+    background-color: #e62429;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
+}
+
+.btn-comprar:hover {
+    background-color: #b81d21;
+}
+
+/* Rodapé */
+.footer {
+    text-align: center;
+    padding: 25px;
+    background-color: #0a0a0a;
+    margin-top: 60px;
+    color: #666;
+    font-size: 0.9rem;
+    border-top: 1px solid #222;
 }
