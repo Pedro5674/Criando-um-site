@@ -38,7 +38,7 @@ body {
     color: #f1f1f1;
 }
 
-/* Banner de Boas-vindas */
+
 .banner {
     text-align: center;
     padding: 25px 15px;
@@ -56,7 +56,7 @@ body {
     color: #aaa;
 }
 
-/* Seção Principal */
+
 .container {
     max-width: 1100px;
     margin: 40px auto;
@@ -71,14 +71,14 @@ body {
     font-size: 1.6rem;
 }
 
-/* Grid de Produtos */
+
 .grid-hqs {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 30px;
 }
 
-/* Card individual da HQ */
+
 .card-hq {
     background-color: #1e1e1e;
     border-radius: 8px;
@@ -114,11 +114,11 @@ body {
 .preco {
     font-size: 1.4rem;
     font-weight: bold;
-    color: #2ed573; /* Verde para destacar valor */
+    color: #2ed573; 
     margin-bottom: 15px;
 }
 
-/* Botão */
+
 .btn-comprar {
     background-color: #e62429;
     color: white;
@@ -136,7 +136,7 @@ body {
     background-color: #b81d21;
 }
 
-/* Rodapé */
+
 .footer {
     text-align: center;
     padding: 25px;
