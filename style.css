@@ -1,148 +1,195 @@
-/* Configurações Globais */
+/* ==========================================================================
+   CONFIGURAÇÕES GLOBAIS
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 }
 
 body {
-    background-color: #121212;
-    color: #ffffff;
+    background-color: #0f0f11;
+    color: #f1f1f1;
+    line-height: 1.6;
 }
 
-/* Cabeçalho */
+/* ==========================================================================
+   CABEÇALHO (HEADER)
+   ========================================================================== */
 .header {
-    background-color: #e62429; /* Vermelho Oficial Marvel */
+    background: linear-gradient(180deg, #8B0000 0%, #5E0000 100%);
     text-align: center;
-    padding: 30px 15px;
+    padding: 40px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    border-bottom: 2px solid #3a0000;
 }
 
 .header h1 {
     font-size: 2.8rem;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .header h1 span {
-    color: #000000;
+    color: #8B0000;
     background-color: #ffffff;
-    padding: 2px 8px;
+    padding: 2px 10px;
     border-radius: 4px;
+    margin-left: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .header p {
-    margin-top: 8px;
-    font-size: 1.1rem;
-    color: #f1f1f1;
+    margin-top: 10px;
+    font-size: 1.05rem;
+    color: #e0e0e0;
+    font-weight: 300;
+    letter-spacing: 0.5px;
 }
 
-
+/* ==========================================================================
+   BANNER DE BOAS-VINDAS
+   ========================================================================== */
 .banner {
     text-align: center;
-    padding: 25px 15px;
-    background-color: #1a1a1a;
-    border-bottom: 3px solid #e62429;
+    padding: 25px 20px;
+    background-color: #16161a;
+    border-bottom: 3px solid #8B0000;
 }
 
 .banner h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #ffffff;
-    margin-bottom: 5px;
+    font-weight: 600;
+    margin-bottom: 6px;
 }
 
 .banner p {
-    color: #aaa;
+    color: #9e9e9e;
+    font-size: 0.95rem;
 }
 
-
+/* ==========================================================================
+   CONTAINER PRINCIPAL
+   ========================================================================== */
 .container {
-    max-width: 1100px;
+    max-width: 1140px;
     margin: 40px auto;
     padding: 0 20px;
 }
 
 .container h2 {
-    margin-bottom: 25px;
-    color: #e62429;
-    border-left: 5px solid #e62429;
-    padding-left: 12px;
-    font-size: 1.6rem;
+    margin-bottom: 30px;
+    color: #ffffff;
+    border-left: 4px solid #8B0000;
+    padding-left: 14px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-
+/* ==========================================================================
+   GRID DE HQs
+   ========================================================================== */
 .grid-hqs {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 30px;
 }
 
-
+/* ==========================================================================
+   CARD DE HQ
+   ========================================================================== */
 .card-hq {
-    background-color: #1e1e1e;
-    border-radius: 8px;
-    padding: 20px;
+    background-color: #18181c;
+    border-radius: 10px;
+    padding: 18px;
     text-align: center;
-    border: 1px solid #2a2a2a;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    border: 1px solid #282830;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .card-hq:hover {
-    transform: translateY(-6px);
-    border-color: #e62429;
+    transform: translateY(-8px);
+    border-color: #8B0000;
+    box-shadow: 0 8px 24px rgba(139, 0, 0, 0.25);
 }
 
 .card-hq img {
     width: 100%;
-    height: 320px;
+    height: 330px;
     object-fit: cover;
     border-radius: 6px;
     margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+    transition: opacity 0.2s ease;
+}
+
+.card-hq:hover img {
+    opacity: 0.95;
 }
 
 .card-hq h3 {
     font-size: 1.1rem;
-    margin-bottom: 10px;
+    font-weight: 600;
+    margin-bottom: 12px;
     color: #ffffff;
+    line-height: 1.3;
 }
 
 .preco {
     font-size: 1.4rem;
-    font-weight: bold;
-    color: #2ed573; 
-    margin-bottom: 15px;
+    font-weight: 700;
+    color: #2ed573;
+    margin-bottom: 16px;
 }
 
-
+/* ==========================================================================
+   BOTÕES DE COMPRA
+   ========================================================================== */
 .btn-comprar {
-    background-color: #e62429;
-    color: white;
+    display: inline-block;
+    background-color: #8B0000;
+    color: #ffffff;
     border: none;
     padding: 12px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 5px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
     width: 100%;
 }
 
 .btn-comprar:hover {
-    background-color: #b81d21;
+    background-color: #A00000;
 }
 
+.btn-comprar:active {
+    transform: scale(0.98);
+}
 
+/* ==========================================================================
+   RODAPÉ (FOOTER)
+   ========================================================================== */
 .footer {
     text-align: center;
-    padding: 25px;
-    background-color: #0a0a0a;
-    margin-top: 60px;
-    color: #666;
-    font-size: 0.9rem;
-    border-top: 1px solid #222;
+    padding: 30px 20px;
+    background-color: #09090b;
+    margin-top: 70px;
+    color: #71717a;
+    font-size: 0.88rem;
+    border-top: 1px solid #1f1f23;
+}
 }
