@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - Marvel HQs Store</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos da página de checkout/compra */
+        .checkout-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        .produto-resumo {
+            flex: 1 1 300px;
+            border-right: 1px solid #eee;
+            padding-right: 20px;
+            text-align: center;
+        }
+
+        .produto-resumo img {
+            max-width: 220px;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-bottom: 15px;
+        }
+
+        .checkout-form {
+            flex: 2 1 400px;
+        }
+
+        .section-title {
+            border-bottom: 2px solid #e62429;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: #e62429;
+            text-transform: uppercase;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .frete-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px dashed #ccc;
+        }
+
+        .frete-opcoes {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .frete-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .resumo-valores {
+            background: #151515;
+            color: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        .resumo-linha {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .resumo-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #4caf50;
+            border-top: 1px solid #444;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            margin-top: 20px;
+            color: #e62429;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-voltar:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>MARVEL <span>HQs Store</span></h1>
+        <p>Finalize o seu pedido com segurança</p>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="btn-voltar">&larr; Voltar para a loja</a>
+
+        <div class="checkout-container">
+            
+            <!-- Lado Esquerdo: Produto Escolhido -->
+            <div class="produto-resumo">
+                <h3 class="section-title">Item Selecionado</h3>
+                <img id="hq-img" src="https://m.media-amazon.com/images/I/61XRuJ8xz1L._AC_UF1000,1000_QL80_.jpg" alt="HQ Escolhida">
+                <h4 id="hq-titulo">HQ Marvel - Edição Especial</h4>
+                <p class="preco" style="font-size: 1.4rem; color: #e62429; font-weight: bold; margin-top: 10px;">
+                    R$ <span id="preco-base">39.90</span>
+                </p>
+            </div>
+
+            <!-- Lado Direito: Frete e Pagamento -->
+            <div class="checkout-form">
+                
+                <!-- Cálculo de Frete -->
+                <h3 class="section-title">1. Calcular Frete</h3>
+                <div class="frete-box">
+                    <div class="form-group" style="display: flex; gap: 10px;">
+                        <input type="text" id="cep" placeholder="Digite seu CEP (ex: 01001-000)" maxlength="9">
+                        <button type="button" class="btn-comprar" onclick="calcularFrete()" style="width: 140px;">Calcular</button>
+                    </div>
+
+                    <div id="frete-opcoes" class="frete-opcoes">
+                        <p style="font-size: 0.9rem; font-weight: bold; margin-bottom: 8px;">Opções de entrega disponíveis:</p>
+                        <div class="frete-item">
+                            <label>
+                                <input type="radio" name="opcao-frete" value="15.00" checked onclick="atualizarTotal()"> PAC (5 a 8 dias úteis)
+                            </label>
+                            <span>R$ 15,00</span>
+                        </div>
+                        <div class="frete-item">
+                            <label>
+                                <input type="radio" name="opcao-frete" value="28.00" onclick="atualizarTotal()"> SEDEX (1 a 3 dias úteis)
+                            </label>
+                            <span>R$ 28,00</span>
+                        </div>
+                        <div class="frete-item">
+                            <label>
+                                <input type="radio" name="opcao-frete" value="0.00" onclick="atualizarTotal()"> Retirada na Loja
+                            </label>
+                            <span>Grátis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dados do Comprador -->
+                <h3 class="section-title">2. Dados do Comprador</h3>
+                <div class="form-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" placeholder="Digite seu nome completo">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" placeholder="seu@email.com">
+                </div>
+
+                <!-- Formas de Pagamento -->
+                <h3 class="section-title">3. Forma de Pagamento</h3>
+                <div class="form-group">
+                    <select id="pagamento">
+                        <option value="pix">Pix (Aprovação Imediata - 5% OFF)</option>
+                        <option value="cartao">Cartão de Crédito</option>
+                        <option value="boleto">Boleto Bancário</option>
+                    </select>
+                </div>
+
+                <!-- Resumo do Valor Total -->
+                <div class="resumo-valores">
+                    <div class="resumo-linha">
+                        <span>Subtotal HQ:</span>
+                        <span>R$ <span id="subtotal">39.90</span></span>
+                    </div>
+                    <div class="resumo-linha">
+                        <span>Valor do Frete:</span>
+                        <span>R$ <span id="valor-frete">0.00</span></span>
+                    </div>
+                    <div class="resumo-total">
+                        <span>Total:</span>
+                        <span>R$ <span id="total-final">39.90</span></span>
+                    </div>
+                </div>
+
+                <button class="btn-comprar" style="width: 100%; margin-top: 20px; font-size: 1.1rem; padding: 12px;" onclick="finalizarPedido()">
+                    Finalizar Pedido
+                </button>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" style="margin-top: 40px;">
+        <p>&copy; 2026 Marvel HQs Store - Loja desenvolvida para GitHub Pages</p>
+    </footer>
+
+    <!-- Script para ler parâmetros da URL e calcular o frete dinamicamente -->
+    <script>
+        // Carrega dados da URL se passados via link (ex: compre.html?titulo=HQ&preco=39.90&img=...)
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            const titulo = urlParams.get('titulo');
+            const preco = urlParams.get('preco');
+            const img = urlParams.get('img');
+
+            if (titulo) document.getElementById('hq-titulo').innerText = titulo;
+            if (img) document.getElementById('hq-img').src = img;
+            if (preco) {
+                const precoFormatado = parseFloat(preco).toFixed(2);
+                document.getElementById('preco-base').innerText = precoFormatado;
+                document.getElementById('subtotal').innerText = precoFormatado;
+                document.getElementById('total-final').innerText = precoFormatado;
+            }
+        };
+
+        // Mostrar opções de frete ao clicar em calcular
+        function calcularFrete() {
+            const cep = document.getElementById('cep').value.trim();
+            if (cep === "") {
+                alert("Por favor, digite um CEP válido!");
+                return;
+            }
+            
+            document.getElementById('frete-opcoes').style.display = 'block';
+            atualizarTotal();
+        }
+
+        // Atualizar o valor total somando o preço da HQ + Frete selecionado
+        function atualizarTotal() {
+            const subtotal = parseFloat(document.getElementById('preco-base').innerText);
+            
+            // Pega o frete selecionado
+            const fretes = document.getElementsByName('opcao-frete');
+            let valorFrete = 0;
+
+            for (let f of fretes) {
+                if (f.checked) {
+                    valorFrete = parseFloat(f.value);
+                    break;
+                }
+            }
+
+            document.getElementById('valor-frete').innerText = valorFrete.toFixed(2);
+            
+            const total = subtotal + valorFrete;
+            document.getElementById('total-final').innerText = total.toFixed(2);
+        }
+
+        // Alerta de confirmação do pedido
+        function finalizarPedido() {
+            const nome = document.getElementById('nome').value;
+            if(!nome) {
+                alert("Por favor, preencha seu nome antes de finalizar!");
+                return;
+            }
+            alert(`Obrigado pela compra, ${nome}! Seu pedido foi gerado com sucesso.`);
+        }
+    </script>
+</body>
+</html>
