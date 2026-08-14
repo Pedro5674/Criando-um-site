@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Confirmado - Marvel HQs Store</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .sucesso-card {
+            background: #fff;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .icon-sucesso {
+            font-size: 60px;
+            color: #4caf50;
+            margin-bottom: 10px;
+        }
+
+        .numero-pedido {
+            background-color: #f4f4f9;
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #555;
+            margin: 15px 0;
+        }
+
+        .previa-entrega {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            color: #2e7d32;
+        }
+
+        .previa-entrega h3 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .data-destaque {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1b5e20;
+            margin-top: 5px;
+        }
+
+        .detalhes-pedido {
+            text-align: left;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .detalhes-pedido p {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>MARVEL <span>HQs Store</span></h1>
+        <p>Obrigado por comprar conosco!</p>
+    </header>
+
+    <main class="container">
+        <div class="sucesso-card">
+            <div class="icon-sucesso">✓</div>
+            <h2 style="color: #202020; border: none; padding: 0; text-align: center;">Compra Realizada com Sucesso!</h2>
+            
+            <p>Seu pedido foi recebido e já está sendo preparado pela nossa equipe.</p>
+            
+            <div class="numero-pedido">
+                Número do Pedido: <span id="num-pedido">#MARVEL-8492</span>
+            </div>
+
+            <!-- Previsão do Dia de Entrega -->
+            <div class="previa-entrega">
+                <h3>Previsão de Entrega:</h3>
+                <div class="data-destaque" id="data-entrega">Carregando data...</div>
+                <p style="font-size: 0.9rem; margin-top: 8px;">(Enviado via <span id="modalidade-frete">SEDEX</span>)</p>
+            </div>
+
+            <!-- Resumo do Pedido -->
+            <div class="detalhes-pedido">
+                <p><strong>Item Comprado:</strong> <span id="item-nome">HQ Marvel</span></p>
+                <p><strong>Cliente:</strong> <span id="cliente-nome">Comprador</span></p>
+                <p><strong>Forma de Pagamento:</strong> <span id="pagamento-tipo">Pix</span></p>
+                <p><strong>Valor Total Pago:</strong> R$ <span id="valor-total">0.00</span></p>
+            </div>
+
+            <a href="index.html" class="btn-comprar" style="margin-top: 25px; display: inline-block;">Voltar para a Loja</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Marvel HQs Store - Loja desenvolvida para GitHub Pages</p>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            const item = urlParams.get('item') || 'HQ Marvel';
+            const cliente = urlParams.get('cliente') || 'Herói Marvel';
+            const total = urlParams.get('total') || '0.00';
+            const pagamento = urlParams.get('pagamento') || 'Pix';
+            const diasFrete = parseInt(urlParams.get('dias')) || 5;
+            const nomeFrete = urlParams.get('frete') || 'PAC';
+
+            // Gerar número de pedido aleatório
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('num-pedido').innerText = `#MARVEL-${randomNum}`;
+
+            // Preencher os dados no HTML
+            document.getElementById('item-nome').innerText = item;
+            document.getElementById('cliente-nome').innerText = cliente;
+            document.getElementById('valor-total').innerText = total;
+            document.getElementById('pagamento-tipo').innerText = pagamento.toUpperCase();
+            document.getElementById('modalidade-frete').innerText = nomeFrete;
+
+            // Calcular a data exata de entrega (Data Atual + dias do frete)
+            const hoje = new Date();
+            hoje.setDate(hoje.getDate() + diasFrete);
+
+            // Formatar a data para o padrão do Brasil (Ex: Quinta-feira, 20/08/2026)
+            const opcoesData = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dataFormatada = hoje.toLocaleDateString('pt-BR', opcoesData);
+
+            document.getElementById('data-entrega').innerText = dataFormatada;
+        };
+    </script>
+
+</body>
+</html>
