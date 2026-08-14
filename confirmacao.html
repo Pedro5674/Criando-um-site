@@ -6,30 +6,64 @@
     <title>Pedido Confirmado - Marvel HQs Store</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .sucesso-card {
-            background: #fff;
-            max-width: 600px;
+        .sucesso-container {
+            max-width: 700px;
             margin: 30px auto;
+            background: #fff;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             text-align: center;
         }
 
         .icon-sucesso {
-            font-size: 60px;
-            color: #4caf50;
-            margin-bottom: 10px;
+            width: 70px;
+            height: 70px;
+            background-color: #4caf50;
+            color: #fff;
+            font-size: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
         }
 
         .numero-pedido {
             background-color: #f4f4f9;
             display: inline-block;
-            padding: 8px 15px;
+            padding: 8px 18px;
             border-radius: 20px;
             font-weight: bold;
-            color: #555;
+            color: #444;
             margin: 15px 0;
+            border: 1px solid #ddd;
+        }
+
+        .hq-comprada {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .hq-comprada img {
+            width: 90px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .hq-info h4 {
+            font-size: 1.2rem;
+            color: #202020;
+            margin-bottom: 5px;
         }
 
         .previa-entrega {
@@ -43,14 +77,16 @@
 
         .previa-entrega h3 {
             margin-bottom: 5px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
         }
 
         .data-destaque {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: bold;
             color: #1b5e20;
             margin-top: 5px;
+            text-transform: capitalize;
         }
 
         .detalhes-pedido {
@@ -62,6 +98,11 @@
 
         .detalhes-pedido p {
             margin-bottom: 8px;
+            color: #555;
+        }
+
+        .detalhes-pedido strong {
+            color: #202020;
         }
     </style>
 </head>
@@ -69,36 +110,44 @@
 
     <header class="header">
         <h1>MARVEL <span>HQs Store</span></h1>
-        <p>Obrigado por comprar conosco!</p>
+        <p>Confirmação do Pedido</p>
     </header>
 
     <main class="container">
-        <div class="sucesso-card">
+        <div class="sucesso-container">
             <div class="icon-sucesso">✓</div>
-            <h2 style="color: #202020; border: none; padding: 0; text-align: center;">Compra Realizada com Sucesso!</h2>
-            
-            <p>Seu pedido foi recebido e já está sendo preparado pela nossa equipe.</p>
+            <h2 style="border: none; padding: 0; text-align: center; color: #202020;">Compra Realizada com Sucesso!</h2>
+            <p style="color: #666; margin-top: 5px;">Obrigado pela compra! Seu pedido já está sendo preparado.</p>
             
             <div class="numero-pedido">
-                Número do Pedido: <span id="num-pedido">#MARVEL-8492</span>
+                Número do Pedido: <span id="num-pedido">#MARVEL-0000</span>
             </div>
 
-            <!-- Previsão do Dia de Entrega -->
+            <!-- HQ Escolhida -->
+            <div class="hq-comprada">
+                <img id="hq-img" src="" alt="HQ Selecionada">
+                <div class="hq-info">
+                    <p style="font-size: 0.85rem; color: #e62429; font-weight: bold;">PRODUTO SELECIONADO</p>
+                    <h4 id="hq-titulo">Carregando HQ...</h4>
+                    <p style="color: #666; font-size: 0.95rem;">Valor total do item + frete</p>
+                </div>
+            </div>
+
+            <!-- Previsão de Entrega -->
             <div class="previa-entrega">
-                <h3>Previsão de Entrega:</h3>
-                <div class="data-destaque" id="data-entrega">Carregando data...</div>
-                <p style="font-size: 0.9rem; margin-top: 8px;">(Enviado via <span id="modalidade-frete">SEDEX</span>)</p>
+                <h3> Previsão de Entrega no seu Endereço:</h3>
+                <div class="data-destaque" id="data-entrega">Calculando data...</div>
+                <p style="font-size: 0.9rem; margin-top: 8px;">Modalidade: <strong id="modalidade-frete">PAC</strong></p>
             </div>
 
-            <!-- Resumo do Pedido -->
+            <!-- Resumo dos Dados -->
             <div class="detalhes-pedido">
-                <p><strong>Item Comprado:</strong> <span id="item-nome">HQ Marvel</span></p>
-                <p><strong>Cliente:</strong> <span id="cliente-nome">Comprador</span></p>
-                <p><strong>Forma de Pagamento:</strong> <span id="pagamento-tipo">Pix</span></p>
-                <p><strong>Valor Total Pago:</strong> R$ <span id="valor-total">0.00</span></p>
+                <p><strong>Comprador:</strong> <span id="cliente-nome">-</span></p>
+                <p><strong>Forma de Pagamento:</strong> <span id="pagamento-tipo">-</span></p>
+                <p><strong>Valor Total Pago:</strong> <span style="color: #4caf50; font-weight: bold; font-size: 1.1rem;">R$ <span id="valor-total">0.00</span></span></p>
             </div>
 
-            <a href="index.html" class="btn-comprar" style="margin-top: 25px; display: inline-block;">Voltar para a Loja</a>
+            <a href="index.html" class="btn-comprar" style="margin-top: 25px; display: inline-block; width: 100%;">Voltar para a Loja</a>
         </div>
     </main>
 
@@ -108,33 +157,36 @@
 
     <script>
         window.onload = function() {
+            // Ler dados passados pela URL vindo da página compre.html
             const urlParams = new URLSearchParams(window.location.search);
 
-            const item = urlParams.get('item') || 'HQ Marvel';
-            const cliente = urlParams.get('cliente') || 'Herói Marvel';
-            const total = urlParams.get('total') || '0.00';
-            const pagamento = urlParams.get('pagamento') || 'Pix';
+            const item = urlParams.get('item') || 'HQ Marvel Especial';
+            const img = urlParams.get('img') || 'https://m.media-amazon.com/images/I/61XRuJ8xz1L._AC_UF1000,1000_QL80_.jpg';
+            const cliente = urlParams.get('cliente') || 'Comprador Marvel';
+            const total = urlParams.get('total') || '39.90';
+            const pagamento = urlParams.get('pagamento') || 'pix';
             const diasFrete = parseInt(urlParams.get('dias')) || 5;
             const nomeFrete = urlParams.get('frete') || 'PAC';
 
             // Gerar número de pedido aleatório
-            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            const randomNum = Math.floor(100000 + Math.random() * 900000);
             document.getElementById('num-pedido').innerText = `#MARVEL-${randomNum}`;
 
-            // Preencher os dados no HTML
-            document.getElementById('item-nome').innerText = item;
+            // Preencher dados na tela
+            document.getElementById('hq-titulo').innerText = item;
+            document.getElementById('hq-img').src = img;
             document.getElementById('cliente-nome').innerText = cliente;
             document.getElementById('valor-total').innerText = total;
             document.getElementById('pagamento-tipo').innerText = pagamento.toUpperCase();
             document.getElementById('modalidade-frete').innerText = nomeFrete;
 
-            // Calcular a data exata de entrega (Data Atual + dias do frete)
-            const hoje = new Date();
-            hoje.setDate(hoje.getDate() + diasFrete);
+            // Calcular a Data Prevista de Entrega (Hoje + Dias de Frete)
+            const dataHoje = new Date();
+            dataHoje.setDate(dataHoje.getDate() + diasFrete);
 
-            // Formatar a data para o padrão do Brasil (Ex: Quinta-feira, 20/08/2026)
-            const opcoesData = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const dataFormatada = hoje.toLocaleDateString('pt-BR', opcoesData);
+            // Formatar a data para o português do Brasil
+            const opcoesData = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            const dataFormatada = dataHoje.toLocaleDateString('pt-BR', opcoesData);
 
             document.getElementById('data-entrega').innerText = dataFormatada;
         };

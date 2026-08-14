@@ -6,7 +6,6 @@
     <title>Finalizar Compra - Marvel HQs Store</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Estilos específicos da página de checkout/compra */
         .checkout-container {
             display: flex;
             flex-wrap: wrap;
@@ -118,10 +117,6 @@
             text-decoration: none;
             font-weight: bold;
         }
-
-        .btn-voltar:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
@@ -136,20 +131,19 @@
 
         <div class="checkout-container">
             
-            <!-- Lado Esquerdo: Produto Escolhido -->
+            <!-- Resumo da HQ escolhida vindo do index.html -->
             <div class="produto-resumo">
                 <h3 class="section-title">Item Selecionado</h3>
                 <img id="hq-img" src="https://m.media-amazon.com/images/I/61XRuJ8xz1L._AC_UF1000,1000_QL80_.jpg" alt="HQ Escolhida">
-                <h4 id="hq-titulo">HQ Marvel - Edição Especial</h4>
+                <h4 id="hq-titulo">Carregando...</h4>
                 <p class="preco" style="font-size: 1.4rem; color: #e62429; font-weight: bold; margin-top: 10px;">
-                    R$ <span id="preco-base">39.90</span>
+                    R$ <span id="preco-base">0.00</span>
                 </p>
             </div>
 
-            <!-- Lado Direito: Frete e Pagamento -->
+            <!-- Formuário de Entrega e Pagamento -->
             <div class="checkout-form">
                 
-                <!-- Cálculo de Frete -->
                 <h3 class="section-title">1. Calcular Frete</h3>
                 <div class="frete-box">
                     <div class="form-group" style="display: flex; gap: 10px;">
@@ -180,7 +174,6 @@
                     </div>
                 </div>
 
-                <!-- Dados do Comprador -->
                 <h3 class="section-title">2. Dados do Comprador</h3>
                 <div class="form-group">
                     <label for="nome">Nome Completo:</label>
@@ -191,21 +184,19 @@
                     <input type="email" id="email" placeholder="seu@email.com">
                 </div>
 
-                <!-- Formas de Pagamento -->
                 <h3 class="section-title">3. Forma de Pagamento</h3>
                 <div class="form-group">
                     <select id="pagamento">
-                        <option value="pix">Pix (Aprovação Imediata - 5% OFF)</option>
-                        <option value="cartao">Cartão de Crédito</option>
-                        <option value="boleto">Boleto Bancário</option>
+                        <option value="Pix">Pix (Aprovação Imediata - 5% OFF)</option>
+                        <option value="Cartão de Crédito">Cartão de Crédito</option>
+                        <option value="Boleto Bancário">Boleto Bancário</option>
                     </select>
                 </div>
 
-                <!-- Resumo do Valor Total -->
                 <div class="resumo-valores">
                     <div class="resumo-linha">
                         <span>Subtotal HQ:</span>
-                        <span>R$ <span id="subtotal">39.90</span></span>
+                        <span>R$ <span id="subtotal">0.00</span></span>
                     </div>
                     <div class="resumo-linha">
                         <span>Valor do Frete:</span>
@@ -213,11 +204,11 @@
                     </div>
                     <div class="resumo-total">
                         <span>Total:</span>
-                        <span>R$ <span id="total-final">39.90</span></span>
+                        <span>R$ <span id="total-final">0.00</span></span>
                     </div>
                 </div>
 
-                <button class="btn-comprar" style="width: 100%; margin-top: 20px; font-size: 1.1rem; padding: 12px;" onclick="finalizarPedido()">
+                <button type="button" class="btn-comprar" style="width: 100%; margin-top: 20px; font-size: 1.1rem; padding: 12px;" onclick="finalizarPedido()">
                     Finalizar Pedido
                 </button>
 
@@ -229,43 +220,38 @@
         <p>&copy; 2026 Marvel HQs Store - Loja desenvolvida para GitHub Pages</p>
     </footer>
 
-    <!-- Script para ler parâmetros da URL e calcular o frete dinamicamente -->
     <script>
-        // Carrega dados da URL se passados via link (ex: compre.html?titulo=HQ&preco=39.90&img=...)
+        let imgHQ = "";
+
+        // Pega as informações passadas pelo index.html
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             
-            const titulo = urlParams.get('titulo');
-            const preco = urlParams.get('preco');
-            const img = urlParams.get('img');
+            const titulo = urlParams.get('titulo') || 'HQ Marvel Especial';
+            const preco = urlParams.get('preco') || '39.90';
+            imgHQ = urlParams.get('img') || 'https://m.media-amazon.com/images/I/61XRuJ8xz1L._AC_UF1000,1000_QL80_.jpg';
 
-            if (titulo) document.getElementById('hq-titulo').innerText = titulo;
-            if (img) document.getElementById('hq-img').src = img;
-            if (preco) {
-                const precoFormatado = parseFloat(preco).toFixed(2);
-                document.getElementById('preco-base').innerText = precoFormatado;
-                document.getElementById('subtotal').innerText = precoFormatado;
-                document.getElementById('total-final').innerText = precoFormatado;
-            }
+            document.getElementById('hq-titulo').innerText = titulo;
+            document.getElementById('hq-img').src = imgHQ;
+            
+            const precoFormatado = parseFloat(preco).toFixed(2);
+            document.getElementById('preco-base').innerText = precoFormatado;
+            document.getElementById('subtotal').innerText = precoFormatado;
+            document.getElementById('total-final').innerText = precoFormatado;
         };
 
-        // Mostrar opções de frete ao clicar em calcular
         function calcularFrete() {
             const cep = document.getElementById('cep').value.trim();
             if (cep === "") {
                 alert("Por favor, digite um CEP válido!");
                 return;
             }
-            
             document.getElementById('frete-opcoes').style.display = 'block';
             atualizarTotal();
         }
 
-        // Atualizar o valor total somando o preço da HQ + Frete selecionado
         function atualizarTotal() {
             const subtotal = parseFloat(document.getElementById('preco-base').innerText);
-            
-            // Pega o frete selecionado
             const fretes = document.getElementsByName('opcao-frete');
             let valorFrete = 0;
 
@@ -277,19 +263,43 @@
             }
 
             document.getElementById('valor-frete').innerText = valorFrete.toFixed(2);
-            
             const total = subtotal + valorFrete;
             document.getElementById('total-final').innerText = total.toFixed(2);
         }
 
-        // Alerta de confirmação do pedido
+        // ENVIA DIRETO PARA A TELA confirmacao.html
         function finalizarPedido() {
-            const nome = document.getElementById('nome').value;
+            const nome = document.getElementById('nome').value.trim();
             if(!nome) {
-                alert("Por favor, preencha seu nome antes de finalizar!");
+                alert("Por favor, digite seu nome antes de continuar.");
                 return;
             }
-            alert(`Obrigado pela compra, ${nome}! Seu pedido foi gerado com sucesso.`);
+
+            const cep = document.getElementById('cep').value.trim();
+            if(!cep) {
+                alert("Por favor, digite e calcule o frete!");
+                return;
+            }
+
+            const hqTitulo = document.getElementById('hq-titulo').innerText;
+            const totalFinal = document.getElementById('total-final').innerText;
+            const pagamento = document.getElementById('pagamento').value;
+
+            // Determina os dias do frete escolhido
+            const fretes = document.getElementsByName('opcao-frete');
+            let diasEntrega = 5;
+            let nomeFrete = "PAC";
+
+            if (fretes[1] && fretes[1].checked) {
+                diasEntrega = 2;
+                nomeFrete = "SEDEX";
+            } else if (fretes[2] && fretes[2].checked) {
+                diasEntrega = 1;
+                nomeFrete = "Retirada na Loja";
+            }
+
+            // Redirecionamento direto para a tela de confirmação
+            window.location.href = `confirmacao.html?item=${encodeURIComponent(hqTitulo)}&img=${encodeURIComponent(imgHQ)}&cliente=${encodeURIComponent(nome)}&total=${totalFinal}&pagamento=${encodeURIComponent(pagamento)}&dias=${diasEntrega}&frete=${encodeURIComponent(nomeFrete)}`;
         }
     </script>
 </body>
